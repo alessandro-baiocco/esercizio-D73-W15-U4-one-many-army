@@ -15,7 +15,7 @@ public class Zona {
     private String citta;
 
 
-    @OneToMany(mappedBy = "zona")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "zona")
     private List<Event> eventi;
 
 

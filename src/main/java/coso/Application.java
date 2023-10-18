@@ -28,7 +28,7 @@ public class Application {
 
 
         Supplier<Zona> zonaSupplier = () -> {
-            return new Zona(faker.address().cityName(), faker.address().fullAddress());
+            return new Zona(faker.address().fullAddress(), faker.address().cityName());
         };
 
 
@@ -37,23 +37,39 @@ public class Application {
         };
 
         Supplier<Event> eventSupplier = () -> {
-            return new Event(faker.esports().event(), LocalDate.now(), TipoEvento.PUBBLICO, rnd.nextInt(1, 50), zD.findById(rnd.nextInt(61, 68)));
+            return new Event(faker.esports().event(), LocalDate.now(), TipoEvento.PUBBLICO, rnd.nextInt(1, 50), zD.findById(rnd.nextInt(110, 119)));
         };
         Supplier<Partecipazione> invitiSupplier = () -> {
-            return new Partecipazione(persD.findById(rnd.nextInt(51, 59)), eD.findById(rnd.nextInt(80, 83)), Partecipa.CONFERMATO);
+            return new Partecipazione(persD.findById(rnd.nextInt(100, 109)), eD.findById(rnd.nextInt(120, 129)), Partecipa.CONFERMATO);
         };
 
-
+//
 //        for (int i = 0; i < 10; i++) {
 //            persD.save(personaSupplier.get());
 //        }
 //        for (int i = 0; i < 10; i++) {
 //            zD.save(zonaSupplier.get());
 //        }
-        System.out.println(partD.findById(88));
+
+//        for (int i = 0; i < 10; i++) {
+//            eD.save(eventSupplier.get());
+//        }
 //        for (int i = 0; i < 10; i++) {
 //            partD.save(invitiSupplier.get());
 //        }
+
+
+//        eD.delete(127);
+//        System.out.println(partD.findById(88));
+//        for (int i = 0; i < 10; i++) {
+//            partD.save(invitiSupplier.get());
+//        }
+
+
+        Persona franco = personaSupplier.get();
+        Zona portoCazzi = zonaSupplier.get();
+        Event festaVera = new Event(faker.esports().event(), LocalDate.now(), TipoEvento.PUBBLICO, rnd.nextInt(1, 50), portoCazzi);
+        Partecipazione cheFaFranco = new Partecipazione(franco, festaVera, Partecipa.CONFERMATO);
 
 
         em.close();

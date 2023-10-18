@@ -22,8 +22,7 @@ public class Event {
 
     private int numeroMassimoPartecipanti;
 
-    @OneToMany(mappedBy = "evento", cascade = CascadeType.REMOVE)
-    @OrderBy("title ASC")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "evento")
     private List<Partecipazione> partecipanti;
 
 

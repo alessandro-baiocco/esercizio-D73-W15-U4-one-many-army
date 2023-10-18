@@ -31,9 +31,11 @@ public class EventDAO {
         Event eventFounded = em.find(Event.class, id);
         try {
             if (eventFounded != null) {
+                System.out.println(eventFounded);
                 EntityTransaction transaction = em.getTransaction();
                 transaction.begin();
                 em.remove(eventFounded);
+                System.out.println("ok");
                 transaction.commit();
                 System.out.println("l'evento è stato cancellato correttamente");
             } else {

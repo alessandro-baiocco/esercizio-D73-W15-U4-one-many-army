@@ -23,7 +23,7 @@ public class Partecipazione {
     @GeneratedValue
     private long ID;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "persona_id", nullable = false)
     private Persona persona;
 
