@@ -4,6 +4,7 @@ import enums.Sesso;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,10 +24,8 @@ public class Persona {
     @Enumerated(EnumType.STRING)
     private Sesso sesso;
 
-    @OneToMany
-    @JoinTable(name = "lista_partecipazioni",
-            joinColumns = @JoinColumn(name = "person_id"),
-            inverseJoinColumns = @JoinColumn(name = "partecipate_id"))
+
+    @OneToMany(mappedBy = "persona")
     private List<Partecipazione> partecipazioni;
 
 
@@ -38,6 +37,7 @@ public class Persona {
         this.cognome = cognome;
         this.dataDiNascita = dataDiNascita;
         this.sesso = sesso;
+        this.partecipazioni = new ArrayList<>();
     }
 
     public long getID() {
@@ -86,4 +86,8 @@ public class Persona {
     }
 
 
+    @Override
+    public String toString() {
+        return nome + " " + cognome + " nato il " + dataDiNascita + " " + sesso;
+    }
 }

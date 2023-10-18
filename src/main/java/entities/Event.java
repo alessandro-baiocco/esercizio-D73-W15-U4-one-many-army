@@ -11,7 +11,7 @@ import java.util.List;
 public class Event {
     @Id
     @GeneratedValue
-    private long eventId;
+    private long id;
 
     private String titolo;
 
@@ -22,13 +22,13 @@ public class Event {
 
     private int numeroMassimoPartecipanti;
 
-    @OneToMany(mappedBy = "evento")
+    @OneToMany(mappedBy = "evento", cascade = CascadeType.REMOVE)
     @OrderBy("title ASC")
     private List<Partecipazione> partecipanti;
 
 
     @ManyToOne
-    @JoinColumn(name = "event_id", nullable = false)
+    @JoinColumn(name = "zona_id", nullable = false)
     private Zona zona;
 
 
@@ -36,7 +36,7 @@ public class Event {
     }
 
 
-    public Event(String titolo, LocalDate dataEvento, TipoEvento tipoEvento, int numeroMassimoPartecipanti, List<Partecipazione> partecipanti, Zona zona) {
+    public Event(String titolo, LocalDate dataEvento, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Zona zona) {
         this.titolo = titolo;
         this.dataEvento = dataEvento;
         this.tipoEvento = tipoEvento;
@@ -70,7 +70,7 @@ public class Event {
     }
 
     public long getEventId() {
-        return eventId;
+        return id;
     }
 
     public LocalDate getDataEvento() {
@@ -99,10 +99,11 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event " +
-                titolo +
-                " | " + dataEvento +
+        return "Event n " + id +
+                " |" + titolo + '\'' +
+                " il " + dataEvento +
                 " | " + tipoEvento +
-                " | massimo : " + numeroMassimoPartecipanti + " partecipanti";
+                " | " + numeroMassimoPartecipanti +
+                " è in " + zona;
     }
 }

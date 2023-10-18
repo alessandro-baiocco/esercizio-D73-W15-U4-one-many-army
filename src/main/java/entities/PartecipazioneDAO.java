@@ -23,8 +23,8 @@ public class PartecipazioneDAO {
     }
 
 
-    public Event findById(long id) {
-        return em.find(Event.class, id);
+    public Partecipazione findById(long id) {
+        return em.find(Partecipazione.class, id);
     }
 
     public void delete(long id) {

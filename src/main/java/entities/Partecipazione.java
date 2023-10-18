@@ -4,6 +4,17 @@ import enums.Partecipa;
 
 import javax.persistence.*;
 
+//@ManyToOne
+//@JoinColumn(name = "user_id", nullable = false)
+//private User user; // <-- Foreign Key
+
+//@OneToMany(mappedBy = "user")
+//@OrderBy("title ASC")
+//private List<BlogPost> blogPosts; // Non viene creato a DB, serve
+//// solo lato Java per permetterci di ottenere la lista di tutti i blog
+//// scritti da un certo utente
+
+
 @Entity
 @Table(name = "partecipazione")
 public class Partecipazione {
@@ -12,9 +23,9 @@ public class Partecipazione {
     @GeneratedValue
     private long ID;
 
-    @ManyToOne
-    @JoinColumn(name = "person_id", nullable = false)
-    private Persona partecipante;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "persona_id", nullable = false)
+    private Persona persona;
 
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
@@ -29,7 +40,7 @@ public class Partecipazione {
     }
 
     public Partecipazione(Persona partecipante, Event evento, Partecipa conferma) {
-        this.partecipante = partecipante;
+        this.persona = partecipante;
         this.evento = evento;
         this.conferma = conferma;
     }
@@ -44,5 +55,12 @@ public class Partecipazione {
 
     public long getID() {
         return ID;
+    }
+
+    @Override
+    public String toString() {
+        return persona +
+                " partecipazione all'evento : " + evento +
+                " " + conferma;
     }
 }

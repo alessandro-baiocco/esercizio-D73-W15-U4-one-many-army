@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,10 +14,8 @@ public class Zona {
     private String name;
     private String citta;
 
-    @OneToMany
-    @JoinTable(name = "lista_eventi",
-            joinColumns = @JoinColumn(name = "location_id"),
-            inverseJoinColumns = @JoinColumn(name = "event_id"))
+
+    @OneToMany(mappedBy = "zona")
     private List<Event> eventi;
 
 
@@ -27,6 +26,7 @@ public class Zona {
     public Zona(String name, String citta) {
         this.name = name;
         this.citta = citta;
+        this.eventi = new ArrayList<>();
     }
 
     public String getName() {
@@ -47,5 +47,12 @@ public class Zona {
 
     public long getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Zona " +
+                " | " + name +
+                " | " + citta;
     }
 }

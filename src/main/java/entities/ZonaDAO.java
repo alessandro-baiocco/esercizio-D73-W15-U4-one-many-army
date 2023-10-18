@@ -37,7 +37,7 @@ public class ZonaDAO {
                 transaction.commit();
                 System.out.println("la zona è stato cancellato correttamente");
             } else {
-                System.err.println("l'evento non è stato trovato");
+                System.err.println("la zona non è stato trovato");
             }
         } catch (Exception ex) {
             System.err.println(ex.getMessage());

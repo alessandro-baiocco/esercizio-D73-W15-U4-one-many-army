@@ -16,7 +16,7 @@ public class EventDAO {
             transaction.begin();
             em.persist(evento);
             transaction.commit();
-            System.out.println("Nuovo studente salvato correttamente");
+            System.out.println("Nuovo evento salvato correttamente");
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
