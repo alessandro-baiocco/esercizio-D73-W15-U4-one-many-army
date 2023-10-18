@@ -13,7 +13,7 @@ public class Partecipazione {
     private long ID;
 
     @ManyToOne
-    @JoinColumn(name = "partecipation_id", nullable = false)
+    @JoinColumn(name = "person_id", nullable = false)
     private Persona partecipante;
 
     @ManyToOne
@@ -28,7 +28,9 @@ public class Partecipazione {
     public Partecipazione() {
     }
 
-    public Partecipazione(Partecipa conferma) {
+    public Partecipazione(Persona partecipante, Event evento, Partecipa conferma) {
+        this.partecipante = partecipante;
+        this.evento = evento;
         this.conferma = conferma;
     }
 

@@ -35,11 +35,30 @@ public class Event {
     public Event() {
     }
 
-    public Event(String titolo, LocalDate dataEvento, TipoEvento tipoEvento, int numeroMassimoPartecipanti) {
+
+    public Event(String titolo, LocalDate dataEvento, TipoEvento tipoEvento, int numeroMassimoPartecipanti, List<Partecipazione> partecipanti, Zona zona) {
         this.titolo = titolo;
         this.dataEvento = dataEvento;
         this.tipoEvento = tipoEvento;
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
+        this.zona = zona;
+    }
+
+
+    public List<Partecipazione> getPartecipanti() {
+        return partecipanti;
+    }
+
+    public void setPartecipanti(List<Partecipazione> partecipanti) {
+        this.partecipanti = partecipanti;
+    }
+
+    public Zona getZona() {
+        return zona;
+    }
+
+    public void setZona(Zona zona) {
+        this.zona = zona;
     }
 
     public String getTitolo() {
